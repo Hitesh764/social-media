@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import {useDispatch, useSelector } from 'react-redux';
 import { followUser, unFollowUser} from '../../Actions/userAction';
 
-const User = ({person}) => {
+const User = ({person,showButton}) => {
     const dispatch = useDispatch();
     const {user} = useSelector((state)=>state.authReducers.authData);
     const [following, setFollowing] = useState(person.followers.includes(user._id))
@@ -32,7 +32,10 @@ const User = ({person}) => {
                   <span>{person.username}</span>
                 </div>
               </div>
-              <button className={following? "button fc-btn UnFollowButton" : "button fc-btn"} onClick={handleFollow}>{following? "unfollow" : "follow"}</button>
+              {showButton && (
+                <button className={following? "button fc-btn UnFollowButton" : "button fc-btn"} onClick={handleFollow}>{following? "unfollow" : "follow"}</button>
+
+              )}
             </div>
       
     </>

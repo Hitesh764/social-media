@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import "../profileCard/Profilecard.css";
 import {Link} from "react-router-dom";
 
 // import cover from "../../img/cover.jpg";
 // import profile from "../../img/profileImg.jpg";
 import { useSelector } from "react-redux";
+import Followersmodals from "../profileModals.jsx/FollowersModal/Followersmodals";
 
 const Profilecard = ({location}) => {
+  const [modalOpened, setmodalOpened] = useState(false);
+
+
   const {user} = useSelector((state)=> state.authReducers.authData);
   const posts = useSelector((state)=>state.postReducer.posts)
 
@@ -16,6 +20,9 @@ const Profilecard = ({location}) => {
   // const profilePage = false;
 
   return (
+
+    
+
     <>
       <div className="profileCard">
         <div className="profileImages">
@@ -40,7 +47,8 @@ const Profilecard = ({location}) => {
 
             <div className="follow">
               <span>{user.followers.length}</span>
-              <span>followers</span>
+              <span style={{cursor:"pointer"}} onClick={() => setmodalOpened(true)}>followers</span>
+              <Followersmodals modalOpened={modalOpened} setmodalOpened={setmodalOpened}/>
             </div>
 
             {location === 'profilePage' && (

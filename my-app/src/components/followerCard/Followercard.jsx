@@ -29,7 +29,7 @@ const Followercard = () => {
 
         {persons.map((person, id) => {
           if(person._id !== user._id){
-            return <User person={person} key={id} />;
+            return <User person={person} key={id} showButton={true}/>;
           }
           
         })}

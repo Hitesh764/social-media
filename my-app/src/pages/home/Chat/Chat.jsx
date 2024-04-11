@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom';
 import { IoSettingsOutline } from 'react-icons/io5';
 import ChatBox from '../../../components/ChatBox/ChatBox';
 
+
 import io from "socket.io-client"
 
 const Chat = () => {
@@ -27,7 +28,9 @@ const Chat = () => {
     const [receiveMessage, setReceiveMessage] = useState(null)
 
 
+
     const socket = useRef()
+
 
 
      
@@ -63,7 +66,6 @@ const Chat = () => {
             try {
                 const {data} = await userChats(user._id)
                 setChats(data)
-                console.log(data)
             } catch (error) {
                 console.log(error)
             }
@@ -71,7 +73,6 @@ const Chat = () => {
         getChats()
     
     }, [user])
-
 
 
 
